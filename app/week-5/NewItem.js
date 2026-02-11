@@ -36,7 +36,7 @@ export default function NewItem() {
     >
       {/* Name Field */}
       <div>
-        <label className="block mb-1 font-semibold">Item Name</label>
+        <label className="block mb-1 font-semibold text-black">Item Name</label>
         <input
           type="text"
           value={name}
@@ -51,7 +51,7 @@ export default function NewItem() {
 
         {/* Quantity */}
         <div className="flex-1">
-          <label className="block mb-1 font-semibold">Quantity</label>
+          <label className="block mb-1 font-semibold text-black">Quantity</label>
           <input
             type="number"
             min="1"
@@ -64,11 +64,11 @@ export default function NewItem() {
 
         {/* Category */}
         <div className="flex-1">
-          <label className="block mb-1 font-semibold">Category</label>
+          <label className="block mb-1 font-semibold text-black">Category</label>
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border rounded-md text-black"
           >
             <option value="produce">Produce</option>
             <option value="dairy">Dairy</option>
