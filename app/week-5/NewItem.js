@@ -42,7 +42,7 @@ export default function NewItem() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          className="w-full p-2 border rounded-md"
+          className="w-full p-2 border rounded-md text-black"
         />
       </div>
 
@@ -58,7 +58,7 @@ export default function NewItem() {
             max="99"
             value={quantity}
             onChange={(e) => setQuantity(Number(e.target.value))}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border rounded-md text-black"
           />
         </div>
 
