@@ -5,10 +5,10 @@ import Item from "./item";
 
 export default function ItemList({ items }) {
 
-  // Sorting state
+  // ✅ Sorting state
   const [sortBy, setSortBy] = useState("name");
 
-  // Create sorted copy (DO NOT mutate props)
+  // ✅ Create sorted copy (DO NOT mutate props)
   const sortedItems = [...items].sort((a, b) => {
     if (sortBy === "name") {
       return a.name.localeCompare(b.name);
@@ -21,7 +21,7 @@ export default function ItemList({ items }) {
   return (
     <div>
 
-      {/* Sort Buttons */}
+      {/* 🔵 Sort Buttons */}
       <div className="mb-4 space-x-2">
         <button
           onClick={() => setSortBy("name")}
@@ -46,10 +46,15 @@ export default function ItemList({ items }) {
         </button>
       </div>
 
-      {/* Render Sorted Items */}
-      <ul className="space-y-2">
+      {/* 🔵 Render Sorted Items */}
+      <ul>
         {sortedItems.map((item) => (
-          <Item key={item.id} item={item} />
+          <Item
+            key={item.id}
+            name={item.name}
+            quantity={item.quantity}
+            category={item.category}
+          />
         ))}
       </ul>
 

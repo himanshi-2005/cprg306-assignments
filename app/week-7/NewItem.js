@@ -4,26 +4,28 @@ import { useState } from "react";
 
 export default function NewItem({ onAddItem }) {
 
-  // State Variables
+  // ✅ State Variables
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [category, setCategory] = useState("produce");
 
-  // Handle Submit
+  // ✅ Handle Submit
   function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent page reload
 
+    // Generate random id
+    const id = Math.random().toString(36).substring(2, 9);
+
+    // Create item object
     const item = {
-      id: Math.random().toString(), // required for Week 7
+      id: id,
       name: name,
       quantity: quantity,
       category: category
     };
 
-    // Send item to page.js
+    // Send item to parent component
     onAddItem(item);
-
-    console.log(item);
 
     // Reset form
     setName("");
@@ -38,9 +40,7 @@ export default function NewItem({ onAddItem }) {
     >
       {/* Name Field */}
       <div>
-        <label className="block mb-1 font-semibold text-black">
-          Item Name
-        </label>
+        <label className="block mb-1 font-semibold text-black">Item Name</label>
         <input
           type="text"
           value={name}
@@ -55,9 +55,7 @@ export default function NewItem({ onAddItem }) {
 
         {/* Quantity */}
         <div className="flex-1">
-          <label className="block mb-1 font-semibold text-black">
-            Quantity
-          </label>
+          <label className="block mb-1 font-semibold text-black">Quantity</label>
           <input
             type="number"
             min="1"
@@ -70,9 +68,7 @@ export default function NewItem({ onAddItem }) {
 
         {/* Category */}
         <div className="flex-1">
-          <label className="block mb-1 font-semibold text-black">
-            Category
-          </label>
+          <label className="block mb-1 font-semibold text-black">Category</label>
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -91,7 +87,6 @@ export default function NewItem({ onAddItem }) {
             <option value="other">Other</option>
           </select>
         </div>
-
       </div>
 
       {/* Submit Button */}
@@ -99,7 +94,7 @@ export default function NewItem({ onAddItem }) {
         type="submit"
         className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition"
       >
-        Add Item
+        +
       </button>
     </form>
   );
