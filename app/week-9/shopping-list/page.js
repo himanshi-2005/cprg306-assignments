@@ -1,58 +1,65 @@
 "use client";
 
-import Link from "next/link";
-import { useUserAuth } from "../../../contexts/AuthContext";
+import { useState } from "react";
+import ItemList from "./item-list";
+import NewItem from "./NewItem";
+import MealIdeas from "./MealIdeas";
+import itemsData from "./items.json";
 
 export default function Page() {
-  const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
-  // Handle login
-  const handleLogin = async () => {
-    try {
-      await gitHubSignIn();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // Main state storing all items
+  const [items, setItems] = useState(itemsData);
 
-  // Handle logout
-  const handleLogout = async () => {
-    try {
-      await firebaseSignOut();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // NEW: selected ingredient
+  const [selectedItemName, setSelectedItemName] = useState("");
+
+  // Function to add new item
+  function handleAddItem(newItem) {
+    setItems((currentItems) => [...currentItems, newItem]);
+  }
+
+  // NEW: when an item is clicked
+  function handleItemSelect(item) {
+
+    // Clean the item name
+    let cleanedName = item.name
+      .split(",")[0]     // remove size (ex: "1 kg")
+      .trim()
+      .replace(/[^\w\s]/g, "");   // remove emojis
+
+    setSelectedItemName(cleanedName);
+  }
 
   return (
-    <div>
-      <h1>Week 9 Landing Page</h1>
+    <main className="p-6 max-w-4xl mx-auto">
 
-      {/* If user NOT logged in */}
-      {!user && (
-        <button onClick={handleLogin}>
-          Login with GitHub
-        </button>
-      )}
+      <h1 className="text-3xl font-bold mb-6 text-center">
+        Shopping List
+      </h1>
 
-      {/* If user IS logged in */}
-      {user && (
+      {/* Layout with flex */}
+      <div className="flex gap-10">
+
+        {/* LEFT SIDE */}
         <div>
-          <p>
-            Welcome, {user.displayName} ({user.email})
-          </p>
 
-          <button onClick={handleLogout}>
-            Logout
-          </button>
+          {/* Form */}
+          <NewItem onAddItem={handleAddItem} />
 
-          <br /><br />
+          {/* Item List */}
+          <ItemList
+            items={items}
+            onItemSelect={handleItemSelect}
+          />
 
-          <Link href="/week-9/shopping-list">
-            Go to Shopping List
-          </Link>
         </div>
-      )}
-    </div>
+
+        {/* RIGHT SIDE */}
+        <MealIdeas ingredient={selectedItemName} />
+
+      </div>
+
+    </main>
   );
 }
