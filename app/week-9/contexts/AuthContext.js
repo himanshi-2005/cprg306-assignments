@@ -7,7 +7,8 @@ import {
   onAuthStateChanged,
   GithubAuthProvider,
 } from "firebase/auth";
-import { auth } from "../utils/firebase"; 
+import { auth } from "../../utils/firebase.js";
+ 
 const AuthContext = createContext();
  
 export const AuthContextProvider = ({ children }) => {
