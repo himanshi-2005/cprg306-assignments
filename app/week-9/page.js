@@ -73,11 +73,6 @@
 // }
 
 
-
-
-
-// new code 
-
 "use client";
 
 import { useUserAuth } from "./contexts/AuthContext.js";
@@ -89,7 +84,7 @@ export default function Home() {
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
   const router = useRouter();
 
-  // ✅ Redirect when user logs in
+  // ✅ THIS IS THE MISSING PART
   useEffect(() => {
     if (user) {
       router.push("/week-9/shopping-list");
@@ -107,7 +102,6 @@ export default function Home() {
   const handleSignOut = async () => {
     try {
       await firebaseSignOut();
-      router.push("/"); // ✅ go back to home after logout
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -124,14 +118,8 @@ export default function Home() {
         {user ? (
           <>
             <p className="text-neutral-400 text-xs mb-1">Signed in as</p>
-
-            <p className="text-white font-semibold text-lg">
-              {user.displayName || "User"}
-            </p>
-
-            <p className="text-neutral-600 text-xs mb-6">
-              {user.email}
-            </p>
+            <p className="text-white font-semibold text-lg">{user.displayName}</p>
+            <p className="text-neutral-600 text-xs mb-6">{user.email}</p>
 
             <Link
               href="/week-9/shopping-list"
