@@ -58,13 +58,11 @@
 
 
 
-
 "use client";
 
 import { useContext, createContext, useState, useEffect } from "react";
 import {
-  signInWithRedirect,
-  getRedirectResult,
+  signInWithPopup,
   signOut,
   onAuthStateChanged,
   GithubAuthProvider,
@@ -76,30 +74,26 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  // ✅ GitHub login using POPUP (fixes your issue)
   const gitHubSignIn = async () => {
-    const provider = new GithubAuthProvider();
-    await signInWithRedirect(auth, provider);
+    try {
+      const provider = new GithubAuthProvider();
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.error("GitHub Sign-in Error:", error);
+    }
   };
 
   const firebaseSignOut = async () => {
-    await signOut(auth);
-    setUser(null); // 🔥 force clear user
+    try {
+      await signOut(auth);
+      setUser(null);
+    } catch (error) {
+      console.error("Sign-out Error:", error);
+    }
   };
 
   useEffect(() => {
-    const checkRedirect = async () => {
-      try {
-        const result = await getRedirectResult(auth);
-        if (result?.user) {
-          setUser(result.user);
-        }
-      } catch (error) {
-        console.error("Redirect error:", error);
-      }
-    };
-
-    checkRedirect();
-
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });

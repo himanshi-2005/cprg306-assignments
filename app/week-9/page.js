@@ -72,6 +72,9 @@
 //   );
 // }
 
+
+
+
 "use client";
 
 import { useUserAuth } from "./contexts/AuthContext.js";
@@ -82,22 +85,13 @@ export default function Home() {
   const router = useRouter();
 
   const handleSignIn = async () => {
-    try {
-      await gitHubSignIn();
-    } catch (error) {
-      console.error("Error signing in:", error);
-    }
+    await gitHubSignIn();
   };
 
   const handleSignOut = async () => {
-    try {
-      await firebaseSignOut();
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
+    await firebaseSignOut();
   };
 
-  // 🔥 NEW: control shopping list access
   const handleShoppingList = () => {
     if (!user) {
       alert("Please sign in first!");
@@ -107,33 +101,33 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-amber-100 flex items-center justify-center p-6">
-      <div className="w-full max-w-sm bg-amber-200 border border-neutral-800 rounded-2xl p-8 shadow-2xl">
+    <main className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-black flex items-center justify-center p-6">
+      <div className="w-full max-w-sm bg-blue-950 border border-blue-700 rounded-2xl p-8 shadow-2xl">
 
-        <h1 className="text-3xl font-bold text-black mb-4">
+        <h1 className="text-3xl font-bold text-white mb-6 text-center">
           Shopping List
         </h1>
 
-        {/* 🔥 ALWAYS SHOW THIS */}
+        {/* ✅ Always visible */}
         <button
           onClick={handleShoppingList}
-          className="w-full px-4 py-3 bg-neutral-800 text-white rounded-xl mb-4"
+          className="w-full px-4 py-3 bg-blue-700 hover:bg-blue-600 text-white rounded-xl mb-4 transition"
         >
           Go to Shopping List
         </button>
 
-        {/* 🔥 AUTH SECTION */}
+        {/* ✅ Auth buttons */}
         {!user ? (
           <button
             onClick={handleSignIn}
-            className="w-full px-4 py-3 bg-black text-white font-bold rounded-xl"
+            className="w-full px-4 py-3 bg-black hover:bg-gray-900 text-white font-bold rounded-xl transition"
           >
             Continue with GitHub
           </button>
         ) : (
           <button
             onClick={handleSignOut}
-            className="w-full px-4 py-3 border border-black rounded-xl text-black"
+            className="w-full px-4 py-3 border border-blue-400 text-blue-200 rounded-xl hover:bg-blue-800 transition"
           >
             Logout
           </button>
