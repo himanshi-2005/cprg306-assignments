@@ -38,7 +38,7 @@
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AuthContextProvider } from "./week-10/contexts/AuthContext";
+import { AuthContextProvider } from "./week-9/contexts/AuthContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
