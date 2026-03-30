@@ -11,22 +11,21 @@ import ItemList from "./item-list";
 import NewItem from "./NewItem";
 import MealIdeas from "./MealIdeas";
 
-// 🔹 IMPORT FIRESTORE FUNCTIONS
+
 import { getItems, addItem } from "../_services/shopping-list-service";
 
-// 🔹 IMPORT USER AUTH
 import { useUserAuth } from "../../week-9/contexts/AuthContext";
 
 export default function Page() {
 
   const { user } = useUserAuth();
 
-  // ✅ FIXED: start with empty array
+  
   const [items, setItems] = useState([]);
 
   const [selectedItemName, setSelectedItemName] = useState("");
 
-  // 🔹 LOAD ITEMS FROM FIRESTORE
+  
   const loadItems = async () => {
     if (!user) return;
 
@@ -34,12 +33,12 @@ export default function Page() {
     setItems(itemsList);
   };
 
-  // 🔹 RUN WHEN PAGE LOADS / USER CHANGES
+  
   useEffect(() => {
     loadItems();
   }, [user]);
 
-  // 🔹 ADD ITEM TO FIRESTORE
+  
   async function handleAddItem(newItem) {
     if (!user) return;
 
@@ -50,7 +49,7 @@ export default function Page() {
     setItems((currentItems) => [...currentItems, itemWithId]);
   }
 
-  // 🔹 ITEM SELECT (unchanged)
+  
   function handleItemSelect(item) {
     let cleanedName = item.name
       .split(",")[0]

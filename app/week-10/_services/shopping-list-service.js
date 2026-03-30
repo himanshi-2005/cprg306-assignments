@@ -1,14 +1,10 @@
 import { db } from "../../utils/firebase";
 import { collection, getDocs, addDoc, query } from "firebase/firestore";
 
-// rest stays SAME
-
-// ✅ Get all items for a user
 export const getItems = async (userId) => {
   const items = [];
 
   try {
-    // Reference to: users/{userId}/items
     const itemsRef = collection(db, "users", userId, "items");
 
     const q = query(itemsRef);
@@ -28,7 +24,6 @@ export const getItems = async (userId) => {
   return items;
 };
 
-// ✅ Add a new item
 export const addItem = async (userId, item) => {
   try {
     const itemsRef = collection(db, "users", userId, "items");

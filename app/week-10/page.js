@@ -36,7 +36,6 @@ export default function Home() {
           Shopping List
         </h1>
 
-        {/* ✅ Always visible */}
         <button
           onClick={handleShoppingList}
           className="w-full px-4 py-3 bg-blue-700 hover:bg-blue-600 text-white rounded-xl mb-4 transition"
@@ -44,7 +43,6 @@ export default function Home() {
           Go to Shopping List
         </button>
 
-        {/* ✅ Auth buttons */}
         {!user ? (
           <button
             onClick={handleSignIn}
