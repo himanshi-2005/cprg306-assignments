@@ -7,7 +7,6 @@ export default function ItemList({ items, onItemSelect }) {
 
   const [sortBy, setSortBy] = useState("name");
 
-  // Create sorted copy (DO NOT modify props)
   const sortedItems = [...items].sort((a, b) => {
 
     if (sortBy === "name") {
@@ -24,7 +23,6 @@ export default function ItemList({ items, onItemSelect }) {
   return (
     <div>
 
-      {/* Sort Buttons */}
       <div className="mb-4 space-x-2">
 
         <button
@@ -51,7 +49,6 @@ export default function ItemList({ items, onItemSelect }) {
 
       </div>
 
-      {/* Item List */}
       <ul className="space-y-2">
 
         {sortedItems.map((item) => (

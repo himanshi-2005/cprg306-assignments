@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-// Function to fetch meals from API
 async function fetchMealIdeas(ingredient) {
   const response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`

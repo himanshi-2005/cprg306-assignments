@@ -7,10 +7,8 @@ import itemsData from "./items.json";
 
 export default function Page() {
 
-  // Main state storing all items
   const [items, setItems] = useState(itemsData);
 
-  // Function to add new item
   function handleAddItem(newItem) {
     setItems((currentItems) => [...currentItems, newItem]);
   }
@@ -22,10 +20,8 @@ export default function Page() {
         Shopping List
       </h1>
 
-      {/* Form */}
       <NewItem onAddItem={handleAddItem} />
 
-      {/* Item List */}
       <ItemList items={items} />
 
     </main>

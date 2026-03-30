@@ -8,25 +8,20 @@ import itemsData from "./items.json";
 
 export default function Page() {
 
-  // Main state storing all items
   const [items, setItems] = useState(itemsData);
 
-  // NEW: selected ingredient
   const [selectedItemName, setSelectedItemName] = useState("");
 
-  // Function to add new item
   function handleAddItem(newItem) {
     setItems((currentItems) => [...currentItems, newItem]);
   }
 
-  // NEW: when an item is clicked
   function handleItemSelect(item) {
 
-    // Clean the item name
     let cleanedName = item.name
-      .split(",")[0]     // remove size (ex: "1 kg")
+      .split(",")[0]     
       .trim()
-      .replace(/[^\w\s]/g, "");   // remove emojis
+      .replace(/[^\w\s]/g, "");   
 
     setSelectedItemName(cleanedName);
   }
@@ -38,16 +33,12 @@ export default function Page() {
         Shopping List
       </h1>
 
-      {/* Layout with flex */}
       <div className="flex gap-10">
 
-        {/* LEFT SIDE */}
         <div>
 
-          {/* Form */}
           <NewItem onAddItem={handleAddItem} />
 
-          {/* Item List */}
           <ItemList
             items={items}
             onItemSelect={handleItemSelect}
@@ -55,7 +46,6 @@ export default function Page() {
 
         </div>
 
-        {/* RIGHT SIDE */}
         <MealIdeas ingredient={selectedItemName} />
 
       </div>

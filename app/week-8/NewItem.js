@@ -18,10 +18,8 @@ export default function NewItem({ onAddItem }) {
       category: category
     };
 
-    // Send item to page.js
     onAddItem(item);
 
-    // Reset form
     setName("");
     setQuantity(1);
     setCategory("produce");
@@ -33,7 +31,6 @@ export default function NewItem({ onAddItem }) {
       className="max-w-md bg-white p-6 rounded-xl shadow-md space-y-4"
     >
 
-      {/* Item Name */}
       <div>
         <label className="block mb-1 font-semibold text-black">
           Item Name
@@ -48,7 +45,6 @@ export default function NewItem({ onAddItem }) {
         />
       </div>
 
-      {/* Quantity + Category */}
       <div className="flex gap-4">
 
         <div className="flex-1">
