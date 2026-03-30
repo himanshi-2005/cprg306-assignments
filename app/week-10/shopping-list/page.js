@@ -79,7 +79,7 @@ import MealIdeas from "./MealIdeas";
 import { getItems, addItem } from "../_services/shopping-list-service";
 
 // 🔹 IMPORT USER AUTH
-import { useUserAuth } from "../../contexts/auth-context";
+import { useUserAuth } from "../contexts/AuthContext";
 
 export default function Page() {
 
