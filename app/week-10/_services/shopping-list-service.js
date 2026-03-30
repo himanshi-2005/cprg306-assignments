@@ -1,5 +1,7 @@
-import { db } from "../utils/firebase";
+import { db } from "../../utils/firebase";
 import { collection, getDocs, addDoc, query } from "firebase/firestore";
+
+// rest stays SAME
 
 // ✅ Get all items for a user
 export const getItems = async (userId) => {
