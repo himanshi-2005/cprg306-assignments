@@ -5,7 +5,7 @@
 
 "use client";
 
-import { useUserAuth } from "./contexts/AuthContext.js";
+import { useUserAuth } from "../week-9/contexts/AuthContext.js";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
       alert("Please sign in first!");
       return;
     }
-    router.push("/week-9/shopping-list");
+    router.push("/week-10/shopping-list");
   };
 
   return (
